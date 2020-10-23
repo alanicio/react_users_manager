@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Container, Icon, Select, TextInput } from './styled'
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Icon, Select, TextInput } from "./styled";
 
-const Filters = props => {
+const Filters = ({ roles }) => {
   return (
     <Container>
       <TextInput>
         <label>Búsqueda</label>
-        <input type="text"/>
+        <input type="text" />
       </TextInput>
 
       <Select>
@@ -25,17 +25,19 @@ const Filters = props => {
 
       <Select>
         <option>Todos</option>
+        {roles.map(({ id, position }) => (
+          <option key={id}>{position}</option>
+        ))}
       </Select>
 
       <Icon className="fas fa-list" selected={true}></Icon>
-			<Icon className="fas fa-th"></Icon>
-
+      <Icon className="fas fa-th"></Icon>
     </Container>
-  )
-}
+  );
+};
 
 Filters.propTypes = {
+  roles: PropTypes.array.isRequired,
+};
 
-}
-
-export default Filters
+export default Filters;
