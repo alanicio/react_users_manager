@@ -1,11 +1,13 @@
 import React from 'react';
+import Filters from './components/Filters';
 import Header from './components/Header';
 
 function App() {
   return (
-    <Header>
-      Users Manager
-    </Header>
+    <>
+      <Header />
+      <Filters />
+    </>
   );
 }
 
