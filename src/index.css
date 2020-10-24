@@ -8,4 +8,5 @@ body {
   background-color: #f7f7f7;
   min-height: 100%;
   padding-bottom: 5rem;
+  overflow-x: hidden;
 }

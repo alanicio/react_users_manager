@@ -5,17 +5,17 @@ export const Photo = styled.div`
   width: 75px;
   border-radius: 50%;
 
-  background-image: url(${({photo}) => photo });
+  background-image: url(${({ photo }) => photo});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 
-  @media (max-width: 750px){
+  @media (max-width: 750px) {
     width: 70px;
     height: 70px;
   }
 
-  @media (max-width: 750px){
+  @media (max-width: 750px) {
     width: 45px;
     height: 45px;
   }
@@ -36,22 +36,28 @@ export const TableCell = styled.td`
   font-family: Arial, Helvetica, sans-serif;
   color: #5f5f5f;
 
-  &:nth-of-type(1){
+  abbr {
+    border-bottom: none;
+    cursor: inherit;
+    text-decoration: none;
+  }
+
+  &:nth-of-type(1) {
     color: #cfcfcf;
     text-align: center;
   }
 
-  @media (max-width: 1200px){
-    display: ${(props) => (props.hideable ? 'none': null)};
+  @media (max-width: 1200px) {
+    display: ${(props) => (props.hideable ? "none" : null)};
   }
 
-  @media (max-width: 710px){
+  @media (max-width: 710px) {
     padding: 0.25rem 1rem;
     max-width: 75px;
   }
 
-  @media (max-width: 650px){
-    display: ${(props) => (props.semihideable ? 'none': null)};
+  @media (max-width: 650px) {
+    display: ${(props) => (props.semihideable ? "none" : null)};
     max-width: 60px;
   }
 
@@ -81,8 +87,8 @@ export const RoundedSwitch = styled.label`
     right: 0;
     bottom: 0;
     background-color: #e2e2e2;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
     border-radius: 34px;
   }
 
@@ -95,8 +101,8 @@ export const RoundedSwitch = styled.label`
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
     border-radius: 50%;
   }
 
@@ -114,7 +120,6 @@ export const RoundedSwitch = styled.label`
     -ms-transform: translateX(38px);
     transform: translateX(38px);
   }
-
 `;
 
 export const Icon = styled.i`
@@ -126,6 +131,6 @@ export const Icon = styled.i`
   @media (max-width: 775px) {
     display: block;
     margin: 0.5rem 0;
-    font-size:16px;
+    font-size: 16px;
   }
 `;

@@ -24,7 +24,9 @@ const Row = ({ user, getRol }) => {
       <TableCell>{name}</TableCell>
       <TableCell semihideable={true}>{fathersLastName}</TableCell>
       <TableCell hideable={true}>{mothersLastName}</TableCell>
-      <TableCell hideable={true}>{email}</TableCell>
+      <TableCell hideable={true}>
+        <abbr title={email}>{email}</abbr>
+      </TableCell>
       <TableCell>{getRol(roleId)}</TableCell>
       <TableCell semihideable={true}>
         <RoundedSwitch>

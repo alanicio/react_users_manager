@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Icon, Select, TextInput } from "./styled";
 
-const Filters = ({ roles }) => {
+const Filters = ({ roles, setSearch }) => {
   return (
     <Container>
       <TextInput>
         <label>Búsqueda</label>
-        <input type="text" />
+        <input type="text" onChange={(e) => setSearch(e.target.value)} />
       </TextInput>
 
       <Select>
@@ -38,6 +38,7 @@ const Filters = ({ roles }) => {
 
 Filters.propTypes = {
   roles: PropTypes.array.isRequired,
+  setSearch: PropTypes.func.isRequired,
 };
 
 export default Filters;
