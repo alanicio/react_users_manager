@@ -54,4 +54,78 @@ export const TableCell = styled.td`
     display: ${(props) => (props.semihideable ? 'none': null)};
     max-width: 60px;
   }
+
+  @media (max-width: 386px) {
+    max-width: 45px;
+  }
+`;
+
+export const RoundedSwitch = styled.label`
+  /* The switch container */
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  height: 26px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  span {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e2e2e2;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+
+  /* The circle, the switch */
+  span:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+
+  input:checked + span {
+    background-color: #637ea8;
+  }
+
+  input:focus + span {
+    box-shadow: 0 0 1px #637ea8;
+  }
+
+  /* The circle when switch is ON */
+  input:checked + span:before {
+    -webkit-transform: translateX(38px);
+    -ms-transform: translateX(38px);
+    transform: translateX(38px);
+  }
+
+`;
+
+export const Icon = styled.i`
+  color: #ff6a28;
+  margin-right: 0.75rem;
+  cursor: pointer;
+  font-size: 18px;
+
+  @media (max-width: 775px) {
+    display: block;
+    margin: 0.5rem 0;
+    font-size:16px;
+  }
 `;

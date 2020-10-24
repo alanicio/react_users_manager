@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Photo, TableCell, TableRow } from "./styled";
+import { Icon, Photo, RoundedSwitch, TableCell, TableRow } from "./styled";
 
 const Row = ({ user, getRol }) => {
   const {
@@ -26,8 +26,16 @@ const Row = ({ user, getRol }) => {
       <TableCell hideable={true}>{mothersLastName}</TableCell>
       <TableCell hideable={true}>{email}</TableCell>
       <TableCell>{getRol(roleId)}</TableCell>
-      <TableCell semihideable={true}>{active}</TableCell>
-      <TableCell></TableCell>
+      <TableCell semihideable={true}>
+        <RoundedSwitch>
+          <input type="checkbox" checked={active} />
+          <span></span>
+        </RoundedSwitch>
+      </TableCell>
+      <TableCell>
+        <Icon className="far fa-trash-alt"></Icon>
+        <Icon className="far fa-edit"></Icon>
+      </TableCell>
     </TableRow>
   );
 };
