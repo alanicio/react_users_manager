@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Filters from "./components/Filters";
 import Header from "./components/Header";
 import JsonUsers from "./assets/users";
 import JsonRoles from "./assets/roles";
 import UsersTable from "./components/UsersTable";
 import shortid from "shortid";
-import { filteredUsers } from "./helpers";
+import { filteredUsers, getNumberOfPages } from "./helpers";
+import Paginator from "./components/Paginator";
 
 function App() {
   JsonUsers.users.forEach((user) => {
@@ -13,8 +14,10 @@ function App() {
   });
 
   const [users, setUsers] = useState(JsonUsers.users);
-  const [roles, setRoles] = useState(JsonRoles.roles);
+  const [roles] = useState(JsonRoles.roles);
   const [search, setSearch] = useState("");
+  const [perPage, setPerPage] = useState(5);
+  const [page, setPage] = useState(1);
 
   const getRol = (id) => {
     const rol = roles.find((rol) => rol.id === id);
@@ -24,8 +27,16 @@ function App() {
   return (
     <>
       <Header />
-      <Filters roles={roles} setSearch={setSearch} />
-      <UsersTable users={filteredUsers(users, search)} getRol={getRol} />
+      <Filters roles={roles} setSearch={setSearch} setPerPage={setPerPage} />
+      <UsersTable
+        users={filteredUsers(users, search, perPage, page)}
+        getRol={getRol}
+      />
+      <Paginator
+        pages={getNumberOfPages(users, perPage)}
+        page={page}
+        setPage={setPage}
+      />
     </>
   );
 }

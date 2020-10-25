@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Icon, Select, TextInput } from "./styled";
 
-const Filters = ({ roles, setSearch }) => {
+const Filters = ({ roles, setSearch, setPerPage }) => {
   return (
     <Container>
       <TextInput>
@@ -10,10 +10,10 @@ const Filters = ({ roles, setSearch }) => {
         <input type="text" onChange={(e) => setSearch(e.target.value)} />
       </TextInput>
 
-      <Select>
-        <option>5 por página</option>
-        <option>8 por página</option>
-        <option>10 por página</option>
+      <Select onChange={(e) => setPerPage(parseInt(e.target.value))}>
+        <option value={5}>5 por página</option>
+        <option value={8}>8 por página</option>
+        <option value={10}>10 por página</option>
       </Select>
 
       <Select>
@@ -39,6 +39,7 @@ const Filters = ({ roles, setSearch }) => {
 Filters.propTypes = {
   roles: PropTypes.array.isRequired,
   setSearch: PropTypes.func.isRequired,
+  setPerPage: PropTypes.func.isRequired,
 };
 
 export default Filters;

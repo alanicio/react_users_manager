@@ -1,5 +1,6 @@
-export const filteredUsers = (users, search) => {
+export const filteredUsers = (users, search, perPage, page) => {
   let filteredUsers = filterBySearch(users, search);
+  filteredUsers = filterByPages(filteredUsers,perPage,page);
   return filteredUsers;
 };
 
@@ -18,3 +19,17 @@ const filterBySearch = (users, search) => {
 
   return filteredUsers;
 };
+
+const filterByPages = (users,perPage,page) => {
+  const lastIndex = (page * perPage);
+  const startingIndex = lastIndex - perPage;
+  return users.slice(startingIndex, lastIndex);
+}
+
+
+export const getNumberOfPages = (users, perPage) => {
+  const length = users.length;
+  return Math.ceil(length / perPage);
+}
+
+
