@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon, Photo, RoundedSwitch, TableCell, TableRow } from "./styled";
 
-const Row = ({ user, getRol }) => {
+const Row = ({ user, getRole }) => {
   const {
     picture,
     name,
@@ -27,7 +27,7 @@ const Row = ({ user, getRol }) => {
       <TableCell hideable={true}>
         <abbr title={email}>{email}</abbr>
       </TableCell>
-      <TableCell>{getRol(roleId)}</TableCell>
+      <TableCell>{getRole(roleId)}</TableCell>
       <TableCell semihideable={true}>
         <RoundedSwitch>
           <input type="checkbox" checked={active} />
@@ -44,7 +44,7 @@ const Row = ({ user, getRol }) => {
 
 Row.propTypes = {
   user: PropTypes.object.isRequired,
-  getRol: PropTypes.func.isRequired,
+  getRole: PropTypes.func.isRequired,
 };
 
 export default Row;

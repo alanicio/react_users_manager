@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Container, Icon, Select, TextInput } from "./styled";
 
-const Filters = ({ roles, setSearch, setPerPage }) => {
+const Filters = ({
+  roles,
+  setSearch,
+  setPerPage,
+  setOrder,
+  setFilterByRole,
+}) => {
   return (
     <Container>
       <TextInput>
@@ -16,17 +22,17 @@ const Filters = ({ roles, setSearch, setPerPage }) => {
         <option value={10}>10 por página</option>
       </Select>
 
-      <Select>
-        <option>Ordenar de A - Z</option>
-        <option>Ordenar de Z - A</option>
-        <option>Ordenar por Rol</option>
-        <option>Ordenar por Status</option>
+      <Select onChange={(e) => setOrder(e.target.value)}>
+        <option value="a-z">Ordenar de A - Z</option>
+        <option value="z-a">Ordenar de Z - A</option>
       </Select>
 
-      <Select>
+      <Select onChange={(e) => setFilterByRole(parseInt(e.target.value))}>
         <option>Todos</option>
         {roles.map(({ id, position }) => (
-          <option key={id}>{position}</option>
+          <option key={id} value={id}>
+            {position}
+          </option>
         ))}
       </Select>
 
@@ -40,6 +46,8 @@ Filters.propTypes = {
   roles: PropTypes.array.isRequired,
   setSearch: PropTypes.func.isRequired,
   setPerPage: PropTypes.func.isRequired,
+  setOrder: PropTypes.func.isRequired,
+  setFilterByRole: PropTypes.func.isRequired,
 };
 
 export default Filters;

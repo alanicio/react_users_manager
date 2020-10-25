@@ -61,6 +61,7 @@ export const Select = styled.select`
   padding: 0.5rem 1rem;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
+  text-align: center;
   color: #5f5f5f;
   margin-right: 2rem;
   cursor: pointer;

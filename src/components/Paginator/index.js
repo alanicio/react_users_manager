@@ -11,6 +11,7 @@ const Paginator = ({ pages, page, setPage }) => {
     <Container>
       {pagesArray.map((number) => (
         <Page
+          key={number}
           selected={page === number ? true : false}
           onClick={() => setPage(number)}
         >
