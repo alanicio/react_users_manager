@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Row from "../Row";
 import { Table, TableTitle, Thead } from "./styled";
 
-const UsersTable = ({ users, getRole }) => {
+const UsersTable = ({ users, getRole, changeStatus }) => {
   return (
     <Table>
       <Thead>
@@ -20,9 +20,14 @@ const UsersTable = ({ users, getRole }) => {
         </tr>
       </Thead>
       <tbody>
-        {users.map(
-          (user) => <Row user={user} getRole = {getRole} key={user.id} />
-        )}
+        {users.map((user) => (
+          <Row
+            key={user.id}
+            user={user}
+            getRole={getRole}
+            changeStatus={changeStatus}
+          />
+        ))}
       </tbody>
     </Table>
   );
@@ -31,6 +36,7 @@ const UsersTable = ({ users, getRole }) => {
 UsersTable.propTypes = {
   users: PropTypes.array.isRequired,
   getRole: PropTypes.func.isRequired,
+  changeStatus: PropTypes.func.isRequired,
 };
 
 export default UsersTable;

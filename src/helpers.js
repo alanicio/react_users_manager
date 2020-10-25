@@ -29,6 +29,7 @@ const filterBySearch = (users, search) => {
     ) {
       return user;
     }
+    return false;
   });
 
   return filteredUsers;

@@ -30,6 +30,15 @@ function App() {
     return role.position;
   };
 
+  const changeStatus = (user) => {
+    const { active } = user;
+    let usersCopy = [...users];
+    const index = usersCopy.findIndex(({ id }) => user.id === id);
+    user.active = !active;
+    usersCopy[index] = user;
+    setUsers(usersCopy);
+  };
+
   const filteredUsers = filterUsers(
     users,
     search,
@@ -52,6 +61,7 @@ function App() {
       <UsersTable
         users={filterByPages(filteredUsers, perPage, page)}
         getRole={getRole}
+        changeStatus={changeStatus}
       />
       <Paginator
         pages={getNumberOfPages(filteredUsers, perPage)}
