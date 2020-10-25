@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon, Photo, RoundedSwitch, TableCell, TableRow } from "./styled";
 
-const Row = ({ user, getRole, changeStatus }) => {
+const Row = ({ user, getRole, changeStatus, deleteUser }) => {
   const {
+    id,
     picture,
     name,
     fathersLastName,
@@ -30,12 +31,19 @@ const Row = ({ user, getRole, changeStatus }) => {
       <TableCell>{getRole(roleId)}</TableCell>
       <TableCell semihideable={true}>
         <RoundedSwitch>
-          <input type="checkbox" checked={active} onChange={() => changeStatus(user)} />
+          <input
+            type="checkbox"
+            checked={active}
+            onChange={() => changeStatus(user)}
+          />
           <span></span>
         </RoundedSwitch>
       </TableCell>
       <TableCell>
-        <Icon className="far fa-trash-alt"></Icon>
+        <Icon
+          className="far fa-trash-alt"
+          onClick={() => deleteUser(id)}
+        ></Icon>
         <Icon className="far fa-edit"></Icon>
       </TableCell>
     </TableRow>
@@ -46,6 +54,7 @@ Row.propTypes = {
   user: PropTypes.object.isRequired,
   getRole: PropTypes.func.isRequired,
   changeStatus: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 export default Row;

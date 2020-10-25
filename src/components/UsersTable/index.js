@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Row from "../Row";
 import { Table, TableTitle, Thead } from "./styled";
 
-const UsersTable = ({ users, getRole, changeStatus }) => {
+const UsersTable = ({ users, getRole, changeStatus, deleteUser }) => {
   return (
     <Table>
       <Thead>
@@ -26,6 +26,7 @@ const UsersTable = ({ users, getRole, changeStatus }) => {
             user={user}
             getRole={getRole}
             changeStatus={changeStatus}
+            deleteUser={deleteUser}
           />
         ))}
       </tbody>
@@ -37,6 +38,7 @@ UsersTable.propTypes = {
   users: PropTypes.array.isRequired,
   getRole: PropTypes.func.isRequired,
   changeStatus: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired,
 };
 
 export default UsersTable;

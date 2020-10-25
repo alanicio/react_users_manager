@@ -39,6 +39,11 @@ function App() {
     setUsers(usersCopy);
   };
 
+  const deleteUser = (id) => {
+    const newUsers = users.filter((user) => id !== user.id);
+    setUsers(newUsers);
+  };
+
   const filteredUsers = filterUsers(
     users,
     search,
@@ -62,6 +67,7 @@ function App() {
         users={filterByPages(filteredUsers, perPage, page)}
         getRole={getRole}
         changeStatus={changeStatus}
+        deleteUser={deleteUser}
       />
       <Paginator
         pages={getNumberOfPages(filteredUsers, perPage)}
