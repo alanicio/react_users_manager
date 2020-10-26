@@ -11,7 +11,7 @@ const Header = ({ setDisplayModal }) => {
       </div>
 
       <div>
-        <Button>Previsualizar</Button>
+        {/* <Button>Previsualizar</Button> */}
         <Button withBackground={true} onClick={() => setDisplayModal(true)}>
           Agregar nuevo usuario
         </Button>

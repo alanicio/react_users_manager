@@ -62,7 +62,7 @@ export const TableCell = styled.td`
   }
 
   @media (max-width: 386px) {
-    max-width: 45px;
+    max-width: 38px;
   }
 `;
 
@@ -129,8 +129,8 @@ export const Icon = styled.i`
   font-size: 18px;
 
   @media (max-width: 775px) {
-    display: block;
-    margin: 0.5rem 0;
+    display: block !important;
+    margin: 0.75rem 0;
     font-size: 16px;
   }
 `;
