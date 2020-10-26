@@ -11,6 +11,10 @@ export const Modal = styled.div`
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 9rem 0;
+
+  @media(max-height: 960px) {
+    padding: 1rem 0;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -20,6 +24,16 @@ export const ModalContent = styled.div`
   width: 30%;
   padding: 3rem 6rem;
   overflow: hidden;
+
+  @media(max-width: 700px) {
+    padding: 2rem 4rem;
+    width: 70%;
+  }
+
+  @media(max-width: 500px) {
+    padding: 2rem 2.5rem;
+    width: 60%;
+  }
 
   h2 {
     font-family: Arial, Helvetica, sans-serif;
@@ -167,6 +181,10 @@ export const ButtonSection = styled.div`
   display: flex;
   justify-content: right;
   padding: 1rem 4rem 0;
+
+  @media(max-width: 700px) {
+    padding: 1rem 2rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -182,4 +200,9 @@ export const Button = styled.button`
   margin-left: 2rem;
 
   cursor: pointer;
+
+  @media(max-width: 450px) {
+    padding: 1rem 1rem;
+    margin-left: 1rem;
+  }
 `;
