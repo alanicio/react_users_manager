@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
@@ -26,8 +26,13 @@ const UserModal = ({
   setDisplayModal,
   userData = emptyUser,
   addUser,
+  updateUser,
 }) => {
   const [user, setUser] = useState(userData);
+
+  useEffect(() => {
+    setUser(userData);
+  }, [userData]);
 
   const {
     picture,
@@ -60,12 +65,16 @@ const UserModal = ({
       fathersLastName.trim() === "" ||
       mothersLastName.trim() === "" ||
       email.trim() === "" ||
-      roleId.trim() === ""
-    ){
+      roleId === ""
+    ) {
       return;
     }
 
-    addUser(user);
+    if (user.id) {
+      updateUser(user);
+    } else {
+      addUser(user);
+    }
     setUser(emptyUser);
     setDisplayModal(false);
   };

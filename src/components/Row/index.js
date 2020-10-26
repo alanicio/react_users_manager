@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon, Photo, RoundedSwitch, TableCell, TableRow } from "./styled";
 
-const Row = ({ user, getRole, changeStatus, deleteUser }) => {
+const Row = ({ user, getRole, changeStatus, deleteUser, editUser }) => {
   const {
     id,
     picture,
@@ -44,7 +44,7 @@ const Row = ({ user, getRole, changeStatus, deleteUser }) => {
           className="far fa-trash-alt"
           onClick={() => deleteUser(id)}
         ></Icon>
-        <Icon className="far fa-edit"></Icon>
+        <Icon className="far fa-edit" onClick={() => editUser(user)}></Icon>
       </TableCell>
     </TableRow>
   );
@@ -55,6 +55,7 @@ Row.propTypes = {
   getRole: PropTypes.func.isRequired,
   changeStatus: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
+  editUser: PropTypes.func.isRequired,
 };
 
 export default Row;

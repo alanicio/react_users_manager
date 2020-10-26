@@ -22,10 +22,17 @@ function App() {
   const [order, setOrder] = useState("a-z");
   const [roleFilter, setFilterByRole] = useState(0);
   const [displayModal, setDisplayModal] = useState(false);
+  const [userForModal, setUserForModal] = useState(null);
 
   useEffect(() => {
     setPage(1);
   }, [search, perPage, roleFilter]);
+
+  useEffect(() => {
+    if (!displayModal) {
+      setUserForModal(null);
+    }
+  }, [displayModal]);
 
   const getRole = (id) => {
     const role = roles.find((role) => role.id === id);
@@ -48,8 +55,21 @@ function App() {
 
   const addUser = (user) => {
     user.id = shortid.generate();
-    user.roleId = parseInt(user.roleId,10);
+    user.roleId = parseInt(user.roleId, 10);
     setUsers([...users, user]);
+  };
+
+  const editUser = (user) => {
+    setDisplayModal(true);
+    setUserForModal(user);
+  };
+
+  const updateUser = (user) => {
+    user.roleId = parseInt(user.roleId, 10);
+    let usersCopy = [...users];
+    const index = usersCopy.findIndex(({ id }) => user.id === id);
+    usersCopy[index] = user;
+    setUsers(usersCopy);
   };
 
   const filteredUsers = filterUsers(
@@ -67,7 +87,9 @@ function App() {
         roles={roles}
         displayModal={displayModal}
         setDisplayModal={setDisplayModal}
-        addUser = {addUser}
+        addUser={addUser}
+        {...(userForModal ? { userData: userForModal } : {})}
+        updateUser={updateUser}
       />
       <Header setDisplayModal={setDisplayModal} />
       <Filters
@@ -82,6 +104,7 @@ function App() {
         getRole={getRole}
         changeStatus={changeStatus}
         deleteUser={deleteUser}
+        editUser={editUser}
       />
       <Paginator
         pages={getNumberOfPages(filteredUsers, perPage)}
