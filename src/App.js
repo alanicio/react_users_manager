@@ -7,6 +7,7 @@ import UsersTable from "./components/UsersTable";
 import shortid from "shortid";
 import { filterUsers, getNumberOfPages, filterByPages } from "./helpers";
 import Paginator from "./components/Paginator";
+import UserModal from "./components/UserModal";
 
 function App() {
   JsonUsers.users.forEach((user) => {
@@ -20,6 +21,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [order, setOrder] = useState("a-z");
   const [roleFilter, setFilterByRole] = useState(0);
+  const [displayModal, setDisplayModal] = useState(false);
 
   useEffect(() => {
     setPage(1);
@@ -44,6 +46,12 @@ function App() {
     setUsers(newUsers);
   };
 
+  const addUser = (user) => {
+    user.id = shortid.generate();
+    user.roleId = parseInt(user.roleId,10);
+    setUsers([...users, user]);
+  };
+
   const filteredUsers = filterUsers(
     users,
     search,
@@ -55,7 +63,13 @@ function App() {
 
   return (
     <>
-      <Header />
+      <UserModal
+        roles={roles}
+        displayModal={displayModal}
+        setDisplayModal={setDisplayModal}
+        addUser = {addUser}
+      />
+      <Header setDisplayModal={setDisplayModal} />
       <Filters
         roles={roles}
         setSearch={setSearch}
