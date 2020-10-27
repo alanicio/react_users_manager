@@ -23,6 +23,11 @@ export const Photo = styled.div`
 
 export const TableRow = styled.tr`
   border-bottom: 1px solid #e8e8e8;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
 `;
 
 export const TableCell = styled.td`
