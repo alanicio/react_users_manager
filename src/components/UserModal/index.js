@@ -27,6 +27,7 @@ const UserModal = ({
   userData = emptyUser,
   addUser,
   updateUser,
+  modalReadOnly,
 }) => {
   const [user, setUser] = useState(userData);
 
@@ -85,20 +86,22 @@ const UserModal = ({
         <h2>Agregar nuevo usuario</h2>
         <form onSubmit={submitUser}>
           <Photo photo={picture}></Photo>
-          <InputFile>
-            <label> JPG,PNG | Tamaño minimo de 300px × 300px</label>
-            <label htmlFor="file-upload">Subir Foto</label>
-            <input
-              id="file-upload"
-              type="file"
-              onChange={(e) =>
-                setUser({
-                  ...user,
-                  picture: URL.createObjectURL(e.target.files[0]),
-                })
-              }
-            />
-          </InputFile>
+          {modalReadOnly ? null : (
+            <InputFile>
+              <label> JPG,PNG | Tamaño minimo de 300px × 300px</label>
+              <label htmlFor="file-upload">Subir Foto</label>
+              <input
+                id="file-upload"
+                type="file"
+                onChange={(e) =>
+                  setUser({
+                    ...user,
+                    picture: URL.createObjectURL(e.target.files[0]),
+                  })
+                }
+              />
+            </InputFile>
+          )}
           <h4>Información básica</h4>
           <input
             type="text"
@@ -106,6 +109,7 @@ const UserModal = ({
             name="name"
             value={name}
             onChange={updateForm}
+            readOnly={modalReadOnly}
           />
           <input
             type="text"
@@ -113,6 +117,7 @@ const UserModal = ({
             name="fathersLastName"
             value={fathersLastName}
             onChange={updateForm}
+            readOnly={modalReadOnly}
           />
           <input
             type="text"
@@ -120,6 +125,7 @@ const UserModal = ({
             name="mothersLastName"
             value={mothersLastName}
             onChange={updateForm}
+            readOnly={modalReadOnly}
           />
           <input
             type="text"
@@ -127,8 +133,14 @@ const UserModal = ({
             name="email"
             value={email}
             onChange={updateForm}
+            readOnly={modalReadOnly}
           />
-          <select name="roleId" value={roleId} onChange={updateForm}>
+          <select
+            name="roleId"
+            value={roleId}
+            onChange={updateForm}
+            disabled={modalReadOnly}
+          >
             <option value="">Rol</option>
             {roles.map(({ id, position }) => (
               <option key={id} value={id}>
@@ -141,6 +153,7 @@ const UserModal = ({
               type="checkbox"
               checked={active}
               onChange={(e) => setUser({ ...user, active: !active })}
+              disabled={modalReadOnly}
             />
             <span></span>
           </RoundedSwitch>
@@ -149,9 +162,11 @@ const UserModal = ({
             <Button type="button" onClick={closeModal}>
               Cancelar
             </Button>
-            <Button type="submit" withBackground={true}>
-              Guardar Usuario
-            </Button>
+            {modalReadOnly ? null : (
+              <Button type="submit" withBackground={true}>
+                Guardar Usuario
+              </Button>
+            )}
           </ButtonSection>
         </form>
       </ModalContent>

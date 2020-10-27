@@ -2,7 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon, Photo, RoundedSwitch, TableCell, TableRow } from "./styled";
 
-const Row = ({ user, getRole, changeStatus, deleteUser, editUser }) => {
+const Row = ({
+  user,
+  getRole,
+  changeStatus,
+  deleteUser,
+  editUser,
+  showUser,
+}) => {
   const {
     id,
     picture,
@@ -13,8 +20,14 @@ const Row = ({ user, getRole, changeStatus, deleteUser, editUser }) => {
     roleId,
     active,
   } = user;
+
+  const clickIconHandler = (e, func, parameter) => {
+    e.stopPropagation();
+    return func(parameter);
+  };
+
   return (
-    <TableRow>
+    <TableRow onClick={() => showUser(user)}>
       <TableCell hideable={true}>
         <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
         <i className="fas fa-ellipsis-v" aria-hidden="true"></i>
@@ -42,9 +55,12 @@ const Row = ({ user, getRole, changeStatus, deleteUser, editUser }) => {
       <TableCell>
         <Icon
           className="far fa-trash-alt"
-          onClick={() => deleteUser(id)}
+          onClick={(e) => clickIconHandler(e, deleteUser, id)}
         ></Icon>
-        <Icon className="far fa-edit" onClick={() => editUser(user)}></Icon>
+        <Icon
+          className="far fa-edit"
+          onClick={(e) => clickIconHandler(e, editUser, user)}
+        ></Icon>
       </TableCell>
     </TableRow>
   );
@@ -56,6 +72,7 @@ Row.propTypes = {
   changeStatus: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired,
   editUser: PropTypes.func.isRequired,
+  showUser: PropTypes.func.isRequired,
 };
 
 export default Row;

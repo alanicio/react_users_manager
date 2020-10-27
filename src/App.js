@@ -23,6 +23,7 @@ function App() {
   const [roleFilter, setFilterByRole] = useState(0);
   const [displayModal, setDisplayModal] = useState(false);
   const [userForModal, setUserForModal] = useState(null);
+  const [modalReadOnly, setModalReadOnly] = useState(false);
 
   useEffect(() => {
     setPage(1);
@@ -31,6 +32,7 @@ function App() {
   useEffect(() => {
     if (!displayModal) {
       setUserForModal(null);
+      setModalReadOnly(false);
     }
   }, [displayModal]);
 
@@ -72,6 +74,13 @@ function App() {
     setUsers(usersCopy);
   };
 
+  const showUser = user => {
+    setDisplayModal(true);
+    setUserForModal(user);
+    setModalReadOnly(true);
+  }
+  
+
   const filteredUsers = filterUsers(
     users,
     search,
@@ -90,6 +99,7 @@ function App() {
         addUser={addUser}
         {...(userForModal ? { userData: userForModal } : {})}
         updateUser={updateUser}
+        modalReadOnly={modalReadOnly}
       />
       <Header setDisplayModal={setDisplayModal} />
       <Filters
@@ -105,6 +115,7 @@ function App() {
         changeStatus={changeStatus}
         deleteUser={deleteUser}
         editUser={editUser}
+        showUser={showUser}
       />
       <Paginator
         pages={getNumberOfPages(filteredUsers, perPage)}
